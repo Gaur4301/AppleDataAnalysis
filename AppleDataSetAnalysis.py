@@ -24,9 +24,9 @@ class SecondWorkflow:
         """Step 1: Extract data from all sources"""
         inputDFs=AirpodsAfterIphoneExtractor().extract()
         """Step 2: Implement the Transformation Logic"""
-        FirstTransformDF=FirstTransformer().transform(inputDFs)
+        SecondTransformDF=OnlyAirpodsAndIphoneTransformer().transform(inputDFs)
         """Step 3:Load all the required data to differnt sink"""
-        AirpodsAfterIphoneloader(FirstTransformDF).load()
+        OnlyAirpodsAndIphone(SecondTransformDF).load()
 
 class WorkflowRunner:
     def __init__(self,name):
@@ -37,7 +37,7 @@ class WorkflowRunner:
         elif self.name=="secondWorkflow":
             return  SecondWorkflow().runner()
 
-name="firstWorkflow"     
-WorkflowRunner(name).runner()           
+name="secondWorkflow"     
+WorkflowRunner(name).runner()            
 
 
